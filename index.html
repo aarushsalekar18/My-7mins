@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1d4d">
+<title>Our Little Universe</title>
+<meta name="description" content="A tiny little world, made with care.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+<div class="sky" aria-hidden="true" id="sky"></div>
+
+<button class="music" id="musicBtn" aria-pressed="false" aria-label="Turn soft music on">🎵 Music: off</button>
+
+<!-- ============ 0. FULL-SCREEN INTRO VIDEO (plays first) ============ -->
+<div id="vScene" class="vscene" role="region" aria-label="Intro animation" hidden>
+  <canvas id="vBackdrop" class="vback" width="32" height="18" aria-hidden="true"></canvas>
+  <video id="introVideo" class="vvideo" playsinline webkit-playsinline muted preload="auto" aria-label="Intro animation video"></video>
+  <button class="vbtn vsound" id="vSound" aria-pressed="false" aria-label="Turn intro sound on">🔇 Sound off</button>
+  <button class="vbtn vplay" id="vPlay" hidden>Play Intro ✨</button>
+  <button class="vbtn vskip" id="vSkip">Skip Intro →</button>
+</div>
+
+<!-- ============ 1. OPENING SCREEN ============ -->
+<div id="intro" role="dialog" aria-label="Welcome">
+  <div class="sky-layer" id="introSky" aria-hidden="true"></div>
+  <h1>Hey, my favourite human... 💙</h1>
+  <p class="sub">I made a tiny little world. And somehow, it reminded me of you.</p>
+  <div class="door-wrap" id="door" aria-hidden="true">
+    <span class="door-star">✨</span>
+    <div class="door-glow"></div>
+    <div class="door-frame"></div>
+    <div class="door-leaf"></div>
+  </div>
+  <button class="btn" id="openBtn">Open Your Little Universe ✨</button>
+</div>
+
+<main id="main" aria-hidden="true">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="mascot" aria-hidden="true">
+      <span class="antenna">⭐</span><span class="ear l"></span><span class="ear r"></span>
+      <div class="head"><div class="visor"><span class="eye l"></span><span class="eye r"></span></div><span class="smile"></span></div>
+      <span class="heart">💙</span>
+    </div>
+    <h1 id="heroTitle">Welcome to<br>Our Little Universe 💙</h1>
+    <p class="lead">Take your time. Scroll slowly. There's no rush here.</p>
+    <div class="scroll-hint" aria-hidden="true">☁️</div>
+  </section>
+
+  <!-- ============ 2. PHOTOS ============ -->
+  <section id="memories" aria-labelledby="memTitle">
+    <div class="wrap">
+      <p class="eyebrow">A little gallery</p>
+      <h2 id="memTitle">Twenty-one small reminders</h2>
+      <p class="lead">Each one is a tiny piece of you.</p>
+      <div class="journey" id="journey"></div>
+    </div>
+  </section>
+
+  <!-- ============ 3. GADGETS ============ -->
+  <section id="gadgets" aria-labelledby="gadTitle">
+    <div class="wrap">
+      <p class="eyebrow">Magical gadgets</p>
+      <h2 id="gadTitle">Pick a gadget</h2>
+      <div class="gadgets">
+        <button class="gadget glass" data-gadget="door"><span class="ico" aria-hidden="true">🚪</span><span><b>Anywhere Door 🚪</b><span class="d">Step into a quiet little room.</span></span></button>
+        <button class="gadget glass" data-gadget="time"><span class="ico" aria-hidden="true">⏳</span><span><b>Time Machine ⏳</b><span class="d">See all 21 photos on a timeline.</span></span></button>
+        <button class="gadget glass" id="copterBtn"><span class="ico" aria-hidden="true">🚁</span><span><b>Take-Copter 🚁</b><span class="d">Launch some floating hearts.</span></span></button>
+      </div>
+      <div class="copter-out glass" id="copterOut" role="status" aria-live="polite" hidden></div>
+    </div>
+  </section>
+
+  <!-- ============ 4. SECRET MESSAGE ============ -->
+  <section class="night" id="secret" aria-labelledby="secTitle">
+    <div class="night-stars" id="nightStars" aria-hidden="true"></div>
+    <button class="hidden-star" id="hiddenStar" aria-label="A tiny star you found. Open it."><span>⭐</span></button>
+    <div class="wrap">
+      <div class="moon" aria-hidden="true"></div>
+      <h2 id="secTitle" class="center">A message under the moon 🌙</h2>
+      <div class="center mt"><button class="btn soft" id="revealBtn">Reveal the message 💙</button></div>
+      <div class="glass secret-box mt" id="secretBox" hidden>
+        <div class="typed" id="typed" aria-hidden="true"></div>
+        <p class="sr-only" id="typedFull"></p>
+      </div>
+      <div class="center mt"><button class="btn soft" id="skipBtn" hidden>Show full message</button></div>
+    </div>
+  </section>
+
+  <!-- ============ 5. FINAL ============ -->
+  <section class="final" id="final" aria-labelledby="finTitle">
+    <div class="wrap center">
+      <div class="mascot" aria-hidden="true" style="margin-bottom:18px">
+        <span class="antenna">⭐</span><span class="ear l"></span><span class="ear r"></span>
+        <div class="head"><div class="visor"><span class="eye l"></span><span class="eye r"></span></div><span class="smile"></span></div>
+        <span class="heart">💙</span>
+      </div>
+      <h2 id="finTitle">What would make you feel a little better right now?</h2>
+      <div class="choices">
+        <button class="btn" data-choice="talk">Let's talk a little 💬</button>
+        <button class="btn" data-choice="cute">Send me something cute 🧸</button>
+        <button class="btn" data-choice="time">I need a little time 🌙</button>
+      </div>
+      <div class="answer glass" id="answer" role="status" aria-live="polite">Whatever you choose is okay. 💙</div>
+    </div>
+  </section>
+
+  <footer>Made with care, just for you. 💙✨<br><a class="site-link" href="https://your-website-link-here.com" target="_blank" rel="noopener">https://bride-nation-lean-berry.trycloudflare.com</a></footer>
+</main>
+
+<!-- Modals -->
+<div class="modal" id="modalDoor" role="dialog" aria-modal="true" aria-labelledby="doorTitle" hidden>
+  <div class="panel">
+    <button class="x" data-close aria-label="Close">✕</button>
+    <div class="room" aria-hidden="true"><span class="win"></span><span class="lamp">🌙</span><span class="floor"></span><span class="pillow"></span>
+      <div class="mini"><div class="mascot"><span class="ear l"></span><span class="ear r"></span><div class="head"><div class="visor"><span class="eye l"></span><span class="eye r"></span></div><span class="smile"></span></div></div></div>
+    </div>
+    <h3 id="doorTitle">The Anywhere Door 🚪</h3>
+    <p>No pressure. No expectations. Just a little space to talk whenever you're ready.</p>
+  </div>
+</div>
+
+<div class="modal" id="modalTime" role="dialog" aria-modal="true" aria-labelledby="timeTitle" hidden>
+  <div class="panel">
+    <button class="x" data-close aria-label="Close">✕</button>
+    <h3 id="timeTitle">The Time Machine ⏳</h3>
+    <p>All 21 photos, in order.</p>
+    <ol class="timeline" id="timeline"></ol>
+  </div>
+</div>
+
+<div class="modal" id="modalStar" role="dialog" aria-modal="true" aria-labelledby="starTitle" hidden>
+  <div class="panel">
+    <button class="x" data-close aria-label="Close">✕</button>
+    <h3 id="starTitle">⭐ You found it!</h3>
+    <p>Surprise! You found the tiniest star in this universe. ⭐<br><br>If this little world made you smile even for a second, then I'm glad I made it. You deserve kindness on your good days and your difficult days too. 💙</p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
